@@ -1,0 +1,53 @@
+workflows:
+  ios-native-quick-start:
+    name: iOS Native
+    max_build_duration: 120
+    instance_type: mac_mini_m1
+    integrations:
+      app_store_connect: RemoteXAPI
+
+    environment:
+      ios_signing:
+        distribution_type: app_store
+        bundle_identifier: com.bag.remotex
+      vars:
+        APP_STORE_APPLE_ID: 6740772174
+      xcode: 16.4
+      cocoapods: default
+      flutter: stable
+    scripts:
+      - name: Set up provisioning profiles settings on Xcode project
+        script: xcode-project use-profiles
+      - name: Install Flutter dependencies
+        script: |
+          cd $CM_BUILD_DIR/rx 
+          flutter pub get 
+      - name: Install pods
+        script: |
+          find . -name "Podfile" -execdir pod install \;
+      - name: Increment build number
+        script: | 
+          cd $CM_BUILD_DIR/rx/ios
+          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
+          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
+      - name: Build ipa for distribution
+        script: | 
+          cd $CM_BUILD_DIR/rx
+          flutter build ipa --release \
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+    publishing:
+      email:
+        recipients:
+          - idgoratokin@gmail.com
+        notify:
+          success: true
+          failure: false
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        beta_groups:
+          - group name 1
+          - group name 2
+        submit_to_app_store: false

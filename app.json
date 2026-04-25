@@ -13,7 +13,7 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.vautika.holyBible",
+      "bundleIdentifier": "com.coralspiritual.bibleapp",
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
@@ -25,7 +25,7 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.doIT.holyBible"
+      "package": "com.coralspiritual.bibleapp"
     },
     "web": {},
     "plugins": [
