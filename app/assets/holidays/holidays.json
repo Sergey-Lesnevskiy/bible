@@ -1,0 +1,2234 @@
+{
+  "Catholic": [
+    {
+      "date": "2026-01-01",
+      "variation": "no",
+      "title": "Solemnity of Mary, Mother of God",
+      "description": "Honors Mary’s role in the mystery of Christ’s incarnation.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-06",
+      "variation": "no",
+      "title": "Epiphany",
+      "description": "Commemorates the revelation of Jesus Christ to the nations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-11",
+      "variation": "no",
+      "title": "Baptism of the Lord",
+      "description": "Recalls the baptism of Jesus and the beginning of his public ministry.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-18",
+      "variation": "yes",
+      "title": "Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "no",
+      "title": "Conversion of Saint Paul",
+      "description": "Commemorates the conversion of Paul the Apostle and the call to Christian unity.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "yes",
+      "title": "Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-01",
+      "variation": "yes",
+      "title": "Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-02",
+      "variation": "no",
+      "title": "Presentation of the Lord",
+      "description": "Commemorates Jesus being presented at the Temple in Jerusalem.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-08",
+      "variation": "yes",
+      "title": "Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-15",
+      "variation": "yes",
+      "title": "Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-18",
+      "variation": "yes",
+      "title": "Lent Begins",
+      "description": "From today Lent begins, a season of repentance, prayer, and renewal.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-08",
+      "variation": "yes",
+      "title": "Third Sunday of Lent",
+      "description": "Calls believers to repentance and spiritual renewal during Lent.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-19",
+      "variation": "no",
+      "title": "Saint Joseph",
+      "description": "Honors Saint Joseph, guardian of the Holy Family.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-25",
+      "variation": "no",
+      "title": "Annunciation",
+      "description": "Marks the angel Gabriel’s announcement to Mary about the birth of Jesus.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Holy Week Begins",
+      "description": "From today Holy Week begins, recalling Jesus’ passion and resurrection.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-30",
+      "variation": "yes",
+      "title": "Holy Monday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and actions.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-31",
+      "variation": "yes",
+      "title": "Holy Tuesday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and warnings.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-01",
+      "variation": "yes",
+      "title": "Holy Wednesday",
+      "description": "Recalls events leading to the betrayal of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Maundy Thursday",
+      "description": "Commemorates the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Season Begins",
+      "description": "From today the Easter season begins, celebrating the resurrection of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-12",
+      "variation": "yes",
+      "title": "Divine Mercy Sunday",
+      "description": "Highlights the mercy of God revealed through the resurrection of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-12",
+      "variation": "yes",
+      "title": "Second Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-19",
+      "variation": "yes",
+      "title": "Third Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-26",
+      "variation": "yes",
+      "title": "Fourth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-01",
+      "variation": "no",
+      "title": "Saint Joseph the Worker",
+      "description": "Honors Saint Joseph as a model of work, humility, and faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-03",
+      "variation": "yes",
+      "title": "Fifth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-10",
+      "variation": "yes",
+      "title": "Sixth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Easter Season Ends",
+      "description": "From today the Easter season concludes with Pentecost in many churches.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-04",
+      "variation": "yes",
+      "title": "Corpus Christi",
+      "description": "Honors the Eucharist and the real presence of Christ in the sacrament.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-07",
+      "variation": "yes",
+      "title": "Most Holy Trinity",
+      "description": "Celebrates the mystery of one God in three persons: Father, Son, and Holy Spirit.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-07",
+      "variation": "yes",
+      "title": "Tenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-12",
+      "variation": "yes",
+      "title": "Sacred Heart of Jesus",
+      "description": "Highlights the love of Jesus Christ symbolized by his Sacred Heart.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-14",
+      "variation": "yes",
+      "title": "Eleventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-19",
+      "variation": "yes",
+      "title": "Most Sacred Heart of Jesus (Friday)",
+      "description": "Highlights devotion to the love of Christ expressed through his Sacred Heart.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-21",
+      "variation": "yes",
+      "title": "Twelfth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-24",
+      "variation": "no",
+      "title": "Nativity of Saint John the Baptist",
+      "description": "Celebrates the birth of John the Baptist, forerunner of Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-28",
+      "variation": "yes",
+      "title": "Thirteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-29",
+      "variation": "no",
+      "title": "Saints Peter and Paul",
+      "description": "Honors the apostles Peter and Paul and their witness to the Gospel.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-05",
+      "variation": "yes",
+      "title": "Fourteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-12",
+      "variation": "yes",
+      "title": "Fifteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-19",
+      "variation": "yes",
+      "title": "Sixteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-26",
+      "variation": "yes",
+      "title": "Seventeenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-02",
+      "variation": "yes",
+      "title": "Eighteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-06",
+      "variation": "no",
+      "title": "Transfiguration of the Lord",
+      "description": "Commemorates Jesus’ transfiguration and the revelation of his glory.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-09",
+      "variation": "yes",
+      "title": "Nineteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-15",
+      "variation": "no",
+      "title": "Assumption of Mary",
+      "description": "Celebrates Mary being assumed body and soul into heaven.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-16",
+      "variation": "yes",
+      "title": "Twentieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-23",
+      "variation": "yes",
+      "title": "Twenty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-30",
+      "variation": "yes",
+      "title": "Twenty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-06",
+      "variation": "yes",
+      "title": "Twenty-Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-13",
+      "variation": "yes",
+      "title": "Twenty-Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-14",
+      "variation": "no",
+      "title": "Exaltation of the Holy Cross",
+      "description": "Honors the Cross as the instrument of Christ’s victory and salvation.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-20",
+      "variation": "yes",
+      "title": "Twenty-Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "yes",
+      "title": "Twenty-Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "no",
+      "title": "World Communion Sunday",
+      "description": "Celebrates Christian unity through shared communion across denominations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-04",
+      "variation": "no",
+      "title": "Saint Francis of Assisi",
+      "description": "Remembers Saint Francis and his witness of simplicity and care for creation.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-04",
+      "variation": "yes",
+      "title": "Twenty-Seventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-11",
+      "variation": "yes",
+      "title": "Twenty-Eighth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-18",
+      "variation": "no",
+      "title": "Mission Sunday",
+      "description": "Highlights the Church’s mission to proclaim the Gospel throughout the world.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-18",
+      "variation": "yes",
+      "title": "Twenty-Ninth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-25",
+      "variation": "yes",
+      "title": "Thirtieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "no",
+      "title": "All Saints’ Day",
+      "description": "Honors all saints and faithful Christians who have gone before.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "yes",
+      "title": "Thirty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-02",
+      "variation": "no",
+      "title": "All Souls’ Day",
+      "description": "A day of prayer and remembrance for the faithful departed.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-08",
+      "variation": "yes",
+      "title": "Thirty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-22",
+      "variation": "no",
+      "title": "Christ the King Sunday",
+      "description": "Proclaims the kingship of Christ and concludes the liturgical year.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-08",
+      "variation": "no",
+      "title": "Immaculate Conception",
+      "description": "Celebrates Mary’s preservation from original sin.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-26",
+      "variation": "no",
+      "title": "Second Day of Christmas",
+      "description": "Continues the celebration of Christmas and the mystery of the Incarnation.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-27",
+      "variation": "no",
+      "title": "Feast of the Holy Family",
+      "description": "Honors Jesus, Mary, and Joseph as a model of family life and faith.",
+      "observanceLevel": "common"
+    }
+  ],
+  "Protestant": [
+    {
+      "date": "2026-01-06",
+      "variation": "no",
+      "title": "Epiphany",
+      "description": "Commemorates the revelation of Jesus Christ to the nations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-11",
+      "variation": "no",
+      "title": "Baptism of the Lord",
+      "description": "Recalls the baptism of Jesus and the beginning of his public ministry.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-18",
+      "variation": "yes",
+      "title": "Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "no",
+      "title": "Conversion of Saint Paul",
+      "description": "Commemorates the conversion of Paul the Apostle and the call to Christian unity.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "yes",
+      "title": "Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-01",
+      "variation": "yes",
+      "title": "Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-08",
+      "variation": "yes",
+      "title": "Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-15",
+      "variation": "yes",
+      "title": "Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-18",
+      "variation": "yes",
+      "title": "Lent Begins",
+      "description": "From today Lent begins, a season of repentance, prayer, and renewal.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-08",
+      "variation": "yes",
+      "title": "Third Sunday of Lent",
+      "description": "Calls believers to repentance and spiritual renewal during Lent.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Holy Week Begins",
+      "description": "From today Holy Week begins, recalling Jesus’ passion and resurrection.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-30",
+      "variation": "yes",
+      "title": "Holy Monday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and actions.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-31",
+      "variation": "yes",
+      "title": "Holy Tuesday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and warnings.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-01",
+      "variation": "yes",
+      "title": "Holy Wednesday",
+      "description": "Recalls events leading to the betrayal of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Maundy Thursday",
+      "description": "Commemorates the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Season Begins",
+      "description": "From today the Easter season begins, celebrating the resurrection of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-12",
+      "variation": "yes",
+      "title": "Second Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-19",
+      "variation": "yes",
+      "title": "Third Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-26",
+      "variation": "yes",
+      "title": "Fourth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-03",
+      "variation": "yes",
+      "title": "Fifth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-10",
+      "variation": "yes",
+      "title": "Sixth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Easter Season Ends",
+      "description": "From today the Easter season concludes with Pentecost in many churches.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-07",
+      "variation": "yes",
+      "title": "Tenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-14",
+      "variation": "yes",
+      "title": "Eleventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-21",
+      "variation": "yes",
+      "title": "Twelfth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-28",
+      "variation": "yes",
+      "title": "Thirteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-05",
+      "variation": "yes",
+      "title": "Fourteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-12",
+      "variation": "yes",
+      "title": "Fifteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-19",
+      "variation": "yes",
+      "title": "Sixteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-26",
+      "variation": "yes",
+      "title": "Seventeenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-02",
+      "variation": "yes",
+      "title": "Eighteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-09",
+      "variation": "yes",
+      "title": "Nineteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-16",
+      "variation": "yes",
+      "title": "Twentieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-23",
+      "variation": "yes",
+      "title": "Twenty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-30",
+      "variation": "yes",
+      "title": "Twenty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-06",
+      "variation": "yes",
+      "title": "Twenty-Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-13",
+      "variation": "yes",
+      "title": "Twenty-Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-20",
+      "variation": "yes",
+      "title": "Twenty-Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "yes",
+      "title": "Twenty-Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "no",
+      "title": "World Communion Sunday",
+      "description": "Celebrates Christian unity through shared communion across denominations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-04",
+      "variation": "yes",
+      "title": "Twenty-Seventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-11",
+      "variation": "yes",
+      "title": "Twenty-Eighth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-18",
+      "variation": "yes",
+      "title": "Twenty-Ninth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-25",
+      "variation": "yes",
+      "title": "Thirtieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-31",
+      "variation": "no",
+      "title": "Reformation Day",
+      "description": "Commemorates the beginning of the Protestant Reformation.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "yes",
+      "title": "Thirty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-08",
+      "variation": "yes",
+      "title": "Thirty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-26",
+      "variation": "no",
+      "title": "Second Day of Christmas",
+      "description": "Continues the celebration of Christmas and the mystery of the Incarnation.",
+      "observanceLevel": "common"
+    }
+  ],
+  "Methodist": [
+    {
+      "date": "2026-01-06",
+      "variation": "no",
+      "title": "Epiphany",
+      "description": "Commemorates the revelation of Jesus Christ to the nations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-11",
+      "variation": "no",
+      "title": "Baptism of the Lord",
+      "description": "Recalls the baptism of Jesus and the beginning of his public ministry.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-18",
+      "variation": "yes",
+      "title": "Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "no",
+      "title": "Conversion of Saint Paul",
+      "description": "Commemorates the conversion of Paul the Apostle and the call to Christian unity.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "yes",
+      "title": "Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-01",
+      "variation": "yes",
+      "title": "Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-08",
+      "variation": "yes",
+      "title": "Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-15",
+      "variation": "yes",
+      "title": "Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-18",
+      "variation": "yes",
+      "title": "Lent Begins",
+      "description": "From today Lent begins, a season of repentance, prayer, and renewal.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-08",
+      "variation": "yes",
+      "title": "Third Sunday of Lent",
+      "description": "Calls believers to repentance and spiritual renewal during Lent.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Holy Week Begins",
+      "description": "From today Holy Week begins, recalling Jesus’ passion and resurrection.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-30",
+      "variation": "yes",
+      "title": "Holy Monday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and actions.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-31",
+      "variation": "yes",
+      "title": "Holy Tuesday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and warnings.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-01",
+      "variation": "yes",
+      "title": "Holy Wednesday",
+      "description": "Recalls events leading to the betrayal of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Maundy Thursday",
+      "description": "Commemorates the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Season Begins",
+      "description": "From today the Easter season begins, celebrating the resurrection of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-12",
+      "variation": "yes",
+      "title": "Second Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-19",
+      "variation": "yes",
+      "title": "Third Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-26",
+      "variation": "yes",
+      "title": "Fourth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-03",
+      "variation": "yes",
+      "title": "Fifth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-10",
+      "variation": "yes",
+      "title": "Sixth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Easter Season Ends",
+      "description": "From today the Easter season concludes with Pentecost in many churches.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-07",
+      "variation": "yes",
+      "title": "Tenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-14",
+      "variation": "yes",
+      "title": "Eleventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-21",
+      "variation": "yes",
+      "title": "Twelfth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-28",
+      "variation": "yes",
+      "title": "Thirteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-05",
+      "variation": "yes",
+      "title": "Fourteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-12",
+      "variation": "yes",
+      "title": "Fifteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-19",
+      "variation": "yes",
+      "title": "Sixteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-26",
+      "variation": "yes",
+      "title": "Seventeenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-02",
+      "variation": "yes",
+      "title": "Eighteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-09",
+      "variation": "yes",
+      "title": "Nineteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-16",
+      "variation": "yes",
+      "title": "Twentieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-23",
+      "variation": "yes",
+      "title": "Twenty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-30",
+      "variation": "yes",
+      "title": "Twenty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-06",
+      "variation": "yes",
+      "title": "Twenty-Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-13",
+      "variation": "yes",
+      "title": "Twenty-Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-20",
+      "variation": "yes",
+      "title": "Twenty-Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "yes",
+      "title": "Twenty-Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "no",
+      "title": "World Communion Sunday",
+      "description": "Celebrates Christian unity through shared communion across denominations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-04",
+      "variation": "yes",
+      "title": "Twenty-Seventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-11",
+      "variation": "yes",
+      "title": "Twenty-Eighth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-18",
+      "variation": "yes",
+      "title": "Twenty-Ninth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-25",
+      "variation": "yes",
+      "title": "Thirtieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "no",
+      "title": "All Saints’ Day",
+      "description": "Honors all saints and faithful Christians who have gone before.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "yes",
+      "title": "Thirty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-08",
+      "variation": "yes",
+      "title": "Thirty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-26",
+      "variation": "no",
+      "title": "Second Day of Christmas",
+      "description": "Continues the celebration of Christmas and the mystery of the Incarnation.",
+      "observanceLevel": "common"
+    }
+  ],
+  "Lutheran": [
+    {
+      "date": "2026-01-06",
+      "variation": "no",
+      "title": "Epiphany",
+      "description": "Commemorates the revelation of Jesus Christ to the nations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-11",
+      "variation": "no",
+      "title": "Baptism of the Lord",
+      "description": "Recalls the baptism of Jesus and the beginning of his public ministry.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-18",
+      "variation": "yes",
+      "title": "Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "no",
+      "title": "Conversion of Saint Paul",
+      "description": "Commemorates the conversion of Paul the Apostle and the call to Christian unity.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-01-25",
+      "variation": "yes",
+      "title": "Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-01",
+      "variation": "yes",
+      "title": "Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-08",
+      "variation": "yes",
+      "title": "Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-15",
+      "variation": "yes",
+      "title": "Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on the teachings and ministry of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-18",
+      "variation": "yes",
+      "title": "Lent Begins",
+      "description": "From today Lent begins, a season of repentance, prayer, and renewal.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-08",
+      "variation": "yes",
+      "title": "Third Sunday of Lent",
+      "description": "Calls believers to repentance and spiritual renewal during Lent.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Holy Week Begins",
+      "description": "From today Holy Week begins, recalling Jesus’ passion and resurrection.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-03-30",
+      "variation": "yes",
+      "title": "Holy Monday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and actions.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-31",
+      "variation": "yes",
+      "title": "Holy Tuesday",
+      "description": "Continues Holy Week with reflection on Jesus’ teachings and warnings.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-01",
+      "variation": "yes",
+      "title": "Holy Wednesday",
+      "description": "Recalls events leading to the betrayal of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Maundy Thursday",
+      "description": "Commemorates the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Season Begins",
+      "description": "From today the Easter season begins, celebrating the resurrection of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-12",
+      "variation": "yes",
+      "title": "Second Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-19",
+      "variation": "yes",
+      "title": "Third Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-26",
+      "variation": "yes",
+      "title": "Fourth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-03",
+      "variation": "yes",
+      "title": "Fifth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-10",
+      "variation": "yes",
+      "title": "Sixth Sunday of Easter",
+      "description": "Continues the celebration of the resurrection during the Easter season.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Easter Season Ends",
+      "description": "From today the Easter season concludes with Pentecost in many churches.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-07",
+      "variation": "yes",
+      "title": "Tenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-14",
+      "variation": "yes",
+      "title": "Eleventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-21",
+      "variation": "yes",
+      "title": "Twelfth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-28",
+      "variation": "yes",
+      "title": "Thirteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-05",
+      "variation": "yes",
+      "title": "Fourteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-12",
+      "variation": "yes",
+      "title": "Fifteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-19",
+      "variation": "yes",
+      "title": "Sixteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-26",
+      "variation": "yes",
+      "title": "Seventeenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-02",
+      "variation": "yes",
+      "title": "Eighteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-09",
+      "variation": "yes",
+      "title": "Nineteenth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-16",
+      "variation": "yes",
+      "title": "Twentieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-23",
+      "variation": "yes",
+      "title": "Twenty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-30",
+      "variation": "yes",
+      "title": "Twenty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-06",
+      "variation": "yes",
+      "title": "Twenty-Third Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-13",
+      "variation": "yes",
+      "title": "Twenty-Fourth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-20",
+      "variation": "yes",
+      "title": "Twenty-Fifth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "yes",
+      "title": "Twenty-Sixth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "no",
+      "title": "World Communion Sunday",
+      "description": "Celebrates Christian unity through shared communion across denominations.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-04",
+      "variation": "yes",
+      "title": "Twenty-Seventh Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-11",
+      "variation": "yes",
+      "title": "Twenty-Eighth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-18",
+      "variation": "yes",
+      "title": "Twenty-Ninth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-25",
+      "variation": "yes",
+      "title": "Thirtieth Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-31",
+      "variation": "no",
+      "title": "Reformation Day",
+      "description": "Commemorates the beginning of the Protestant Reformation.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "no",
+      "title": "All Saints’ Day",
+      "description": "Honors all saints and faithful Christians who have gone before.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-01",
+      "variation": "yes",
+      "title": "Thirty-First Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-08",
+      "variation": "yes",
+      "title": "Thirty-Second Sunday in Ordinary Time",
+      "description": "A Sunday in Ordinary Time focusing on Christian discipleship and daily faith.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-26",
+      "variation": "no",
+      "title": "Second Day of Christmas",
+      "description": "Continues the celebration of Christmas and the mystery of the Incarnation.",
+      "observanceLevel": "common"
+    }
+  ],
+  "Orthodox": [
+    {
+      "date": "2026-01-07",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ according to the Julian calendar tradition.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-01-19",
+      "variation": "no",
+      "title": "Theophany",
+      "description": "Celebrates the baptism of Jesus Christ in the Jordan River.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-01-30",
+      "variation": "no",
+      "title": "Three Holy Hierarchs",
+      "description": "Honors Saints Basil the Great, Gregory the Theologian, and John Chrysostom.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-15",
+      "variation": "no",
+      "title": "Meeting of the Lord",
+      "description": "Commemorates Christ being presented in the Temple and encountered by Simeon and Anna.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-02-23",
+      "variation": "yes",
+      "title": "Great Lent Begins",
+      "description": "From today Great Lent begins, a season of fasting and repentance in preparation for Pascha.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-03-22",
+      "variation": "yes",
+      "title": "Sunday of Saint Gregory Palamas",
+      "description": "Emphasizes prayer and the experience of God’s grace during Great Lent.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Lazarus Saturday",
+      "description": "Commemorates the raising of Lazarus and anticipates Christ’s victory over death.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-06",
+      "variation": "yes",
+      "title": "Great and Holy Monday",
+      "description": "Begins Orthodox Holy Week with themes of watchfulness and repentance.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-07",
+      "variation": "no",
+      "title": "Annunciation",
+      "description": "Marks the announcement of the angel Gabriel to Mary about the birth of Jesus.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-07",
+      "variation": "yes",
+      "title": "Great and Holy Tuesday",
+      "description": "Continues Holy Week with calls to readiness and faithful living.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-08",
+      "variation": "yes",
+      "title": "Great and Holy Wednesday",
+      "description": "Recalls repentance and the betrayal of Christ as Holy Week continues.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-09",
+      "variation": "yes",
+      "title": "Great and Holy Thursday",
+      "description": "Commemorates the Mystical Supper and the beginning of the Passion.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-10",
+      "variation": "yes",
+      "title": "Great and Holy Friday",
+      "description": "Commemorates the crucifixion and death of Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-11",
+      "variation": "yes",
+      "title": "Great Lent Ends",
+      "description": "From today Great Lent concludes on the eve of Pascha after Holy Saturday.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-11",
+      "variation": "yes",
+      "title": "Great and Holy Saturday",
+      "description": "Remembers Christ’s rest in the tomb and his victory over death.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-19",
+      "variation": "yes",
+      "title": "Thomas Sunday",
+      "description": "Commemorates the apostle Thomas and the affirmation of Christ’s resurrection.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-26",
+      "variation": "yes",
+      "title": "Sunday of the Myrrh-bearing Women",
+      "description": "Honors the women who discovered the empty tomb of Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-03",
+      "variation": "yes",
+      "title": "Sunday of the Paralytic",
+      "description": "Recalls the healing of the paralytic by Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-10",
+      "variation": "yes",
+      "title": "Sunday of the Samaritan Woman",
+      "description": "Remembers Christ’s encounter with the Samaritan woman at the well.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-17",
+      "variation": "yes",
+      "title": "Sunday of the Blind Man",
+      "description": "Recalls the healing of the man born blind by Jesus Christ.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-04",
+      "variation": "yes",
+      "title": "Ascension of the Lord",
+      "description": "Marks Christ’s ascension into heaven forty days after Pascha.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-07",
+      "variation": "yes",
+      "title": "All Saints Sunday",
+      "description": "Honors all saints on the first Sunday after Pentecost in the Orthodox tradition.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-08",
+      "variation": "yes",
+      "title": "Apostles’ Fast Begins",
+      "description": "From today the Apostles’ Fast begins, preparing for the feast of Saints Peter and Paul.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-06-21",
+      "variation": "yes",
+      "title": "Sunday of All Saints of the Russian Land",
+      "description": "Honors saints particularly venerated in the Russian Orthodox tradition.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-11",
+      "variation": "yes",
+      "title": "Apostles’ Fast Ends",
+      "description": "From today the Apostles’ Fast concludes on the eve of the feast of Saints Peter and Paul.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-07-12",
+      "variation": "no",
+      "title": "Saints Peter and Paul",
+      "description": "Honors the apostles Peter and Paul, pillars of the Orthodox Church.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-14",
+      "variation": "no",
+      "title": "Dormition Fast Begins",
+      "description": "From today the Dormition Fast begins, preparing for the Dormition feast.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-19",
+      "variation": "no",
+      "title": "Transfiguration",
+      "description": "Commemorates the transfiguration of Jesus Christ on Mount Tabor.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-27",
+      "variation": "no",
+      "title": "Dormition Fast Ends",
+      "description": "From today the Dormition Fast concludes on the eve of the Dormition feast.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-08-28",
+      "variation": "no",
+      "title": "Dormition of the Theotokos",
+      "description": "Commemorates the falling asleep of the Mother of God.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-11",
+      "variation": "no",
+      "title": "Beheading of Saint John the Baptist",
+      "description": "Commemorates the martyrdom of Saint John the Baptist and is traditionally a strict fast day.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-21",
+      "variation": "no",
+      "title": "Nativity of the Theotokos",
+      "description": "Celebrates the birth of the Mother of God.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-09-27",
+      "variation": "no",
+      "title": "Exaltation of the Holy Cross",
+      "description": "Commemorates the exaltation of the Cross and its victory in Christian life.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-10-14",
+      "variation": "no",
+      "title": "Protection of the Theotokos",
+      "description": "Celebrates the protection and intercession of the Mother of God.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-11-28",
+      "variation": "no",
+      "title": "Nativity Fast Begins",
+      "description": "From today the Nativity Fast begins, a period of prayer and preparation for Christmas.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-04",
+      "variation": "no",
+      "title": "Entrance of the Theotokos into the Temple",
+      "description": "Remembers the dedication of Mary to God in the Temple.",
+      "observanceLevel": "common"
+    }
+  ],
+  "Baptist": [
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Holy Thursday",
+      "description": "Many churches commemorate the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-03",
+      "variation": "yes",
+      "title": "Good Friday",
+      "description": "Commemorates the crucifixion and death of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Sunday",
+      "description": "Celebrates the resurrection of Jesus Christ, the central event of the Christian faith.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-05-14",
+      "variation": "yes",
+      "title": "Ascension",
+      "description": "Many churches remember Jesus’ ascension into heaven after the resurrection.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Pentecost",
+      "description": "Commemorates the descent of the Holy Spirit upon the Church.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    }
+  ],
+  "Nondenominational": [
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Holy Thursday",
+      "description": "Many churches commemorate the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-03",
+      "variation": "yes",
+      "title": "Good Friday",
+      "description": "Commemorates the crucifixion and death of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Sunday",
+      "description": "Celebrates the resurrection of Jesus Christ, the central event of the Christian faith.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-05-14",
+      "variation": "yes",
+      "title": "Ascension",
+      "description": "Many churches remember Jesus’ ascension into heaven after the resurrection.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Pentecost",
+      "description": "Commemorates the descent of the Holy Spirit upon the Church.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    }
+  ],
+  "Pentecostal": [
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Holy Thursday",
+      "description": "Many churches commemorate the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-03",
+      "variation": "yes",
+      "title": "Good Friday",
+      "description": "Commemorates the crucifixion and death of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Sunday",
+      "description": "Celebrates the resurrection of Jesus Christ, the central event of the Christian faith.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-05-14",
+      "variation": "yes",
+      "title": "Ascension",
+      "description": "Many churches remember Jesus’ ascension into heaven after the resurrection.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Pentecost",
+      "description": "Commemorates the descent of the Holy Spirit upon the Church.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    }
+  ],
+  "Evangelical": [
+    {
+      "date": "2026-03-29",
+      "variation": "yes",
+      "title": "Palm Sunday",
+      "description": "Marks Jesus’ entry into Jerusalem at the start of Holy Week.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-02",
+      "variation": "yes",
+      "title": "Holy Thursday",
+      "description": "Many churches commemorate the Last Supper and Jesus’ commandment of love.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-03",
+      "variation": "yes",
+      "title": "Good Friday",
+      "description": "Commemorates the crucifixion and death of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-04",
+      "variation": "yes",
+      "title": "Holy Saturday",
+      "description": "Remembers Christ’s burial and the Church’s waiting before Easter.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Easter Sunday",
+      "description": "Celebrates the resurrection of Jesus Christ, the central event of the Christian faith.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-05-14",
+      "variation": "yes",
+      "title": "Ascension",
+      "description": "Many churches remember Jesus’ ascension into heaven after the resurrection.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Pentecost",
+      "description": "Commemorates the descent of the Holy Spirit upon the Church.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-24",
+      "variation": "no",
+      "title": "Christmas Eve",
+      "description": "Many churches hold services on the evening before Christmas to celebrate Christ’s birth.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    }
+  ],
+  "Adventist": [
+    {
+      "date": "2026-04-03",
+      "variation": "yes",
+      "title": "Good Friday",
+      "description": "Commemorates the crucifixion and death of Jesus Christ.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-04-05",
+      "variation": "yes",
+      "title": "Resurrection of Christ (Easter)",
+      "description": "Many Adventist communities reflect on the resurrection of Jesus Christ during this period.",
+      "observanceLevel": "common"
+    },
+    {
+      "date": "2026-05-24",
+      "variation": "yes",
+      "title": "Pentecost",
+      "description": "Commemorates the descent of the Holy Spirit upon the Church.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-11-29",
+      "variation": "yes",
+      "title": "Advent Begins",
+      "description": "From today the season of Advent begins, a time of preparation for Christmas.",
+      "observanceLevel": "official"
+    },
+    {
+      "date": "2026-12-25",
+      "variation": "no",
+      "title": "Christmas Day",
+      "description": "Celebrates the birth of Jesus Christ.",
+      "observanceLevel": "official"
+    }
+  ]
+}

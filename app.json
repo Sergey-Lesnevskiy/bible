@@ -1,0 +1,56 @@
+{
+  "expo": {
+    "name": "bible",
+    "slug": "bible",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "icon": "./app/assets/images/onboarding/Icon-logo.png",
+    "splash": {
+      "image": "./app/assets/images/onboarding/Icon-logo.png", 
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.vautika.holyBible",
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false,
+      "package": "com.doIT.holyBible"
+    },
+    "web": {},
+    "plugins": [
+      "expo-font",
+      [
+        "@sentry/react-native/expo",
+        {
+          "url": "https://sentry.io/",
+          "project": "Holy Bible",
+          "organization": "doIT"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "2c9b693e-5682-4129-92b4-e90428dbb964"
+      }
+    }
+  }
+}

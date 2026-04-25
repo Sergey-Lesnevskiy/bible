@@ -1,0 +1,111 @@
+export const COLORS = {
+  COLOR_BLACK: '#000000',
+  COLOR_WHITE: '#FFFFFF',
+
+  PRIMARY_BACKGROUND_THEME_DARK: '#131519',
+  PRIMARY_BACKGROUND_THEME_LIGHT: '#FFFFFF',
+
+  AREA_FILL_ICON_THEME_LIGHT: '#F2F3F8',
+  AREA_FILL_ICON_THEME_DARK: '#323237',
+  TABS_DARK: '#23252F',
+
+  PRIMARY_TEXT_THEME_LIGHT: '#101934',
+  PRIMARY_TEXT_THEME_DARK: '#FBFBFB',
+
+  BUTTON_COLOR_ACTIVE_LIGHT: '#EDEFF5',
+  BUTTON_COLOR_ACTIVE_DARK: '#313132',
+
+  COLOR_ICON_DARK: '#0B1227',
+
+  PRIMARY_ACTIVE_BUTTON: '#4B8DFF',
+  PRIMARY_DISABLE_BUTTON_LIGHT: '#C9CDD6',
+  PRIMARY_DISABLE_BUTTON_DARK: '#252830',
+
+  WHITE_10: '#FFFFFFBF',
+  WHITE_20: '#EBEBF529',
+  WHITE_30: '#FFFFFFBF',
+  RED_LIGHT: '#fff9f9',
+  RED_DARK: '#302325',
+
+  BLACK_06: '#202020',
+  BLACK_10: '#0A0A0B',
+  BLACK_20: '#121212',
+  BLACK_30: '#181A22',
+  // background: var(--Labels-Quaternary, #EBEBF529);
+
+  // Оттенки серого
+  GRAY_20: '#F7F8FB',
+  GRAY_22: '#F5F6F9',
+  GRAY_25: '#78788029',
+  GRAY_30: '#78787833',
+  GRAY_35: '#7878805C',
+  GRAY_40: '#3C3C432E',
+  GRAY_50: '#E4E4E6',
+  GRAY_60: '#78788052',
+
+  GRAY_75: '#1F1F1F33',
+  GRAY_76: '#78788052',
+  GRAY_77: '#7878808F',
+  GRAY_80: '#6A6A6A33',
+  GRAY_200: '#D3D3D3',
+  GRAY_225: '#40414E52',
+  GRAY_226: '#C6CAD6',
+  GRAY_230: '#B6B6B6',
+  GRAY_250: '#A9A9AA',
+  GRAY_300: '#9B9B9D',
+  GRAY_325: '#54575E',
+  GRAY_350: '#92959E',
+  GRAY_375: '#797C86',
+  GRAY_380: '#383838BF',
+  GRAY_400: '#606065',
+  GRAY_425: '#54575E',
+  GRAY_500: '#333333',
+  GRAY_550: '#333542',
+  GRAY_600: '#48484B',
+  GRAY_700: '#2A2A2D',
+  GRAY_725: '#242731',
+  GRAY_750: '#1F1F1F',
+  GRAY_800: '#1E1E1E',
+  GRAY_900: '#181A22',
+};
+
+export const COLORS_THEME = {
+  light: {
+    text: COLORS.PRIMARY_TEXT_THEME_LIGHT,
+
+    background: COLORS.PRIMARY_BACKGROUND_THEME_LIGHT,
+    area_icon: COLORS.AREA_FILL_ICON_THEME_LIGHT,
+
+    launcher: COLORS.COLOR_WHITE,
+
+    notification: COLORS.GRAY_20,
+    notification_text: COLORS.GRAY_350,
+
+    tabs: COLORS.COLOR_WHITE,
+
+    button_popup_not_track: COLORS.GRAY_300,
+    button_popup_allow: COLORS.GRAY_200,
+    button_secondary: COLORS.COLOR_WHITE,
+    button_disabled: COLORS.PRIMARY_DISABLE_BUTTON_LIGHT,
+    button_small: COLORS.GRAY_75,
+  },
+  dark: {
+    text: COLORS.PRIMARY_TEXT_THEME_DARK,
+
+    background: COLORS.COLOR_BLACK,
+    area_icon: COLORS.AREA_FILL_ICON_THEME_DARK,
+
+    tabs: COLORS.TABS_DARK,
+
+    launcher: COLORS.BLACK_10,
+
+    notification: COLORS.GRAY_900,
+    notification_text: COLORS.GRAY_375,
+
+    button_popup_not_track: COLORS.GRAY_60,
+    button_popup_allow: COLORS.GRAY_77,
+    button_secondary: COLORS.BLACK_30,
+    button_disabled: COLORS.PRIMARY_DISABLE_BUTTON_DARK,
+    button_small: COLORS.GRAY_80,
+  },
+};
