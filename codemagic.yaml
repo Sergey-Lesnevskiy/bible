@@ -9,7 +9,7 @@ workflows:
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.bag.remotex
+        bundle_identifier: com.coralspiritual.bibleapp
       vars:
         APP_STORE_APPLE_ID: 6740772174
       xcode: 16.4
