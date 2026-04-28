@@ -12,6 +12,9 @@ workflows:
         bundle_identifier: com.coralspiritual.bibleapp
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
+        TEAM_ID: "99QM459FC5"
+        PROFILE_NAME: "Bible profile"
+        APP_STORE_APPLE_ID: 0000000000
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
       node: 18
       xcode: 16.4
@@ -23,134 +26,86 @@ workflows:
           cd $CM_BUILD_DIR
           npm install
 
-      - name: Clean cache
-        script: |
-          cd $CM_BUILD_DIR
-          rm -rf node_modules/.cache
-          rm -rf ios/Pods
-          rm -rf ios/Podfile.lock
-          rm -rf ios/build
-          pod cache clean --all
-
       - name: Prebuild iOS native project
         script: |
           cd $CM_BUILD_DIR
           npx expo prebuild --platform ios --clean
-          # Теперь директория ios существует
-
-      - name: Setup Podfile with iOS version
-        script: |
-          cd $CM_BUILD_DIR/ios
-          
-          # Проверяем, что мы в правильной директории
-          pwd
-          ls -la
-          
-          # Создаем Podfile если его нет
-          if [ ! -f Podfile ]; then
-            echo "Creating Podfile"
-            cat > Podfile << 'EOF'
-            require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
-            require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
-            require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
-            
-            platform :ios, '14.0'
-            
-            prepare_react_native_project!
-            
-            target 'bible' do
-              config = use_native_modules!
-              use_frameworks! :static
-              flags = get_default_flags()
-              
-              use_react_native!(
-                :path => config[:reactNativePath],
-                :hermes_enabled => flags[:hermes_enabled] || false,
-                :fabric_enabled => flags[:fabric_enabled] || false
-              )
-              
-              use_expo_modules!
-              
-              post_integrate do |installer|
-                begin
-                  expo_patch_react_imports!(installer)
-                rescue => e
-                  Pod::UI.warn e
-                end
-              end
-            end
-            
-            post_install do |installer|
-              installer.pods_project.targets.each do |target|
-                target.build_configurations.each do |config|
-                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
-                  config.build_settings['SWIFT_VERSION'] = '5.0'
-                end
-              end
-            end
-            EOF
-          fi
-          
-          echo "=== Podfile content ==="
-          cat Podfile
 
       - name: Install pods
         script: |
           cd $CM_BUILD_DIR/ios
-          pod repo update
-          pod install --repo-update
+          pod install
 
-      - name: Set up node for Xcode
+      - name: Set up node for Xcode build phases
         script: |
           cd $CM_BUILD_DIR
           echo "export NODE_BINARY=$(which node)" > ios/.xcode.env.local
+          cat ios/.xcode.env.local
 
       - name: Set up provisioning profiles
         script: |
-          xcode-project use-profiles
+          xcode-project use-profiles --verbose
+
+      - name: Force signing in Xcode project
+        script: |
+          cd $CM_BUILD_DIR
+          PBXPROJ="ios/bible.xcodeproj/project.pbxproj"
+
+          echo "=== Before patching ==="
+          grep "DEVELOPMENT_TEAM" "$PBXPROJ" || echo "No DEVELOPMENT_TEAM found"
+          grep "CODE_SIGN_STYLE" "$PBXPROJ" || echo "No CODE_SIGN_STYLE found"
+          grep "PROVISIONING_PROFILE_SPECIFIER" "$PBXPROJ" || echo "No PROVISIONING_PROFILE_SPECIFIER found"
+
+          # Set DEVELOPMENT_TEAM everywhere
+          sed -i '' "s/DEVELOPMENT_TEAM = \"\";/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
+          sed -i '' "s/DEVELOPMENT_TEAM = ;/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
+
+          # Switch to manual signing
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' "$PBXPROJ"
+
+          # Set provisioning profile specifier
+          sed -i '' "s/PROVISIONING_PROFILE_SPECIFIER = \"\";/PROVISIONING_PROFILE_SPECIFIER = \"$PROFILE_NAME\";/g" "$PBXPROJ"
+          sed -i '' "s/PROVISIONING_PROFILE_SPECIFIER = ;/PROVISIONING_PROFILE_SPECIFIER = \"$PROFILE_NAME\";/g" "$PBXPROJ"
+
+          # Set code sign identity
+          sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PBXPROJ"
+          sed -i '' 's/"CODE_SIGN_IDENTITY\[sdk=iphoneos\*\]" = "";/"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";/g' "$PBXPROJ"
+
+          echo "=== After patching ==="
+          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -5
+          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -5
+          grep "PROVISIONING_PROFILE_SPECIFIER" "$PBXPROJ" | head -5
+          grep "CODE_SIGN_IDENTITY" "$PBXPROJ" | head -10
 
       - name: Build archive
         script: |
           cd $CM_BUILD_DIR
-          
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
             -configuration Release \
             -destination "generic/platform=iOS" \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             archive \
-            -allowProvisioningUpdates \
-            -allowProvisioningDeviceRegistration \
-            IPHONEOS_DEPLOYMENT_TARGET=14.0 \
-            ENABLE_PREVIEWS=NO
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
+            "CODE_SIGN_IDENTITY=Apple Distribution"
 
       - name: Export IPA
         script: |
           cd $CM_BUILD_DIR
-          
-          cat > /tmp/ExportOptions.plist << 'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>app-store</string>
-            <key>uploadSymbols</key>
-            <true/>
-            <key>signingStyle</key>
-            <string>automatic</string>
-          </dict>
-          </plist>
-          EOF
-          
+          printf '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n\t<key>method</key>\n\t<string>app-store</string>\n\t<key>teamID</key>\n\t<string>%s</string>\n\t<key>uploadSymbols</key>\n\t<true/>\n\t<key>signingStyle</key>\n\t<string>manual</string>\n\t<key>provisioningProfiles</key>\n\t<dict>\n\t\t<key>%s</key>\n\t\t<string>%s</string>\n\t</dict>\n</dict>\n</plist>\n' "$TEAM_ID" "$BUNDLE_ID" "$PROFILE_NAME" > /tmp/ExportOptions.plist
+          cat /tmp/ExportOptions.plist
           xcodebuild -exportArchive \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
-            -exportOptionsPlist /tmp/ExportOptions.plist \
-            -allowProvisioningUpdates
+            -exportOptionsPlist /tmp/ExportOptions.plist
 
     artifacts:
       - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+      - build/ios/xcarchive/*.xcarchive
 
     publishing:
       email:
