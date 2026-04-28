@@ -48,8 +48,6 @@ workflows:
           echo "export NODE_BINARY=$(which node)" > .xcode.env.local
           echo "NODE_BINARY set to: $(which node)"
           
-          # Дополнительно: проверяем наличие react-native CLI
-          npx react-native --version
 
       - name: Set up provisioning profiles
         script: |
