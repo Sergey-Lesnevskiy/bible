@@ -18,29 +18,16 @@ workflows:
       cocoapods: default
 
     scripts:
-      - name: Remove dev menu packages
-        script: |
-          cd $CM_BUILD_DIR
-          # Удаляем проблемные пакеты
-          if [ -d "node_modules/expo-dev-menu" ]; then
-            echo "Removing expo-dev-menu"
-            rm -rf node_modules/expo-dev-menu
-          fi
-          if [ -d "node_modules/expo-dev-client" ]; then
-            echo "Removing expo-dev-client"
-            rm -rf node_modules/expo-dev-client
-          fi
-          
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
-          npm install --legacy-peer-deps
+          npm install
 
       - name: Clean cache
         script: |
           cd $CM_BUILD_DIR
           rm -rf node_modules/.cache
-          rm -rf ios/Pods ios/Podfile.lock ios/build
+          rm -rf ios/Pods ios/Podfile.lock ios/build ios/DerivedData
           pod cache clean --all
 
       - name: Prebuild iOS native project
@@ -54,10 +41,15 @@ workflows:
           pod repo update
           pod install --repo-update
 
-      - name: Set up node for Xcode
+      - name: Setup Node for React Native bundling
         script: |
           cd $CM_BUILD_DIR
           echo "export NODE_BINARY=$(which node)" > ios/.xcode.env.local
+          echo "export NODE_BINARY=$(which node)" > .xcode.env.local
+          echo "NODE_BINARY set to: $(which node)"
+          
+          # Дополнительно: проверяем наличие react-native CLI
+          npx react-native --version
 
       - name: Set up provisioning profiles
         script: |
@@ -66,6 +58,13 @@ workflows:
       - name: Build archive
         script: |
           cd $CM_BUILD_DIR
+          
+          # Экспортируем Node для всех дочерних процессов
+          export NODE_BINARY=$(which node)
+          export NODE_OPTIONS="--max-old-space-size=4096"
+          
+          # Очищаем DerivedData
+          rm -rf ~/Library/Developer/Xcode/DerivedData/bible-*
           
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
@@ -76,8 +75,23 @@ workflows:
             -allowProvisioningUpdates \
             -allowProvisioningDeviceRegistration \
             IPHONEOS_DEPLOYMENT_TARGET=14.0 \
-            ENABLE_PREVIEWS=NO
-
+            ENABLE_PREVIEWS=NO \
+            NODE_BINARY="$NODE_BINARY" \
+            CLANG_ENABLE_MODULES=YES \
+            SWIFT_COMPILATION_MODE=wholemodule
+      - name: Debug bundling script
+        script: |
+          cd $CM_BUILD_DIR
+          # Находим скрипт бандлинга
+          find ios -name "*.sh" -exec grep -l "Bundle React Native" {} \;
+          
+          # Проверяем содержимое скрипта
+          cat ios/bible.xcodeproj/project.pbxproj | grep -A 20 "Bundle React Native code and images"
+          
+          # Ручной запуск бандлинга для проверки
+          export NODE_BINARY=$(which node)
+          cd ios
+          ../node_modules/react-native/scripts/react-native-xcode.sh
       - name: Export IPA
         script: |
           cd $CM_BUILD_DIR
