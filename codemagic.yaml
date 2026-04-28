@@ -13,7 +13,7 @@ workflows:
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
-      node: 22  # 🔥 ИЗМЕНЕНО с 18 на 22
+      node: 22.18.0  # 🔥 ИЗМЕНЕНО
       xcode: 16.4
       cocoapods: default
 
@@ -21,7 +21,7 @@ workflows:
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
-          # Устанавливаем недостающие пакеты
+          # Устанавливаем необходимые dev зависимости
           npm install --save-dev @react-native/metro-config @react-native-community/cli
           npm install
 
@@ -47,42 +47,52 @@ workflows:
         script: |
           xcode-project use-profiles
 
-      - name: Manual bundling and archive
+      - name: Manual bundling
         script: |
           cd $CM_BUILD_DIR
           
-          # Проверяем версию Node
-          node --version
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
           
-          # Создаем bundle
+          # Создаем bundle используя npx
           echo "Creating main.jsbundle..."
           npx react-native bundle \
             --platform ios \
             --dev false \
             --entry-file index.ts \
             --bundle-output ios/main.jsbundle \
-            --assets-dest ios \
-            --verbose
+            --assets-dest ios
           
           if [ ! -f "ios/main.jsbundle" ]; then
+            echo "❌ Bundle creation failed. Trying with index.js..."
+            npx react-native bundle \
+              --platform ios \
+              --dev false \
+              --entry-file index.js \
+              --bundle-output ios/main.jsbundle \
+              --assets-dest ios
+          fi
+          
+          if [ -f "ios/main.jsbundle" ]; then
+            echo "✅ Bundle created: $(ls -lh ios/main.jsbundle)"
+            # Создаем заглушку для Xcode
+            cat > ios/bundle_stub.sh << 'BUNDLE_EOF'
+          #!/bin/bash
+          echo "✓ Auto-bundling disabled, using manual bundle"
+          exit 0
+          BUNDLE_EOF
+            chmod +x ios/bundle_stub.sh
+            # Отключаем автоматический бандлинг
+            sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj || true
+          else
             echo "❌ Bundle creation failed"
             exit 1
           fi
+
+      - name: Build archive
+        script: |
+          cd $CM_BUILD_DIR
           
-          echo "✅ Bundle created: $(ls -lh ios/main.jsbundle)"
-          
-          # Заглушка для Xcode
-          cat > ios/bundle_stub.sh << 'EOF'
-          #!/bin/bash
-          echo "Skipping automatic bundling"
-          exit 0
-          EOF
-          chmod +x ios/bundle_stub.sh
-          
-          # Отключаем автоматический бандлинг
-          sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj || true
-          
-          # Архивация
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
             -configuration Release \
