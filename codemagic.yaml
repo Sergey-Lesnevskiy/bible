@@ -24,7 +24,7 @@ workflows:
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
-          npm ci  # используем ci вместо install для воспроизводимости
+          npm install
 
       - name: Clean cache
         script: |
@@ -33,7 +33,6 @@ workflows:
           rm -rf $CM_BUILD_DIR/ios/Pods
           rm -rf $CM_BUILD_DIR/ios/Podfile.lock
           rm -rf $CM_BUILD_DIR/ios/build
-          rm -rf $CM_BUILD_DIR/ios/bible.xcworkspace
           pod cache clean --all
 
       - name: Setup Podfile
