@@ -41,13 +41,55 @@ workflows:
           pod repo update
           pod install --repo-update
 
-      - name: Setup Node for React Native bundling
+      - name: Setup environment for bundling
         script: |
           cd $CM_BUILD_DIR
-          echo "export NODE_BINARY=$(which node)" > ios/.xcode.env.local
-          echo "export NODE_BINARY=$(which node)" > .xcode.env.local
-          echo "NODE_BINARY set to: $(which node)"
+          echo "export NODE_BINARY=/usr/local/bin/node" > ios/.xcode.env.local
+          echo "export NODE_BINARY=/usr/local/bin/node" > .xcode.env.local
           
+          # Создаем символическую ссылку на node в стандартное место
+          sudo ln -sf /usr/local/bin/node /usr/bin/node || true
+          
+          # Проверяем
+          /usr/local/bin/node --version
+          which node
+
+      - name: Fix bundling script
+        script: |
+          cd $CM_BUILD_DIR/ios
+          
+          # Бэкап оригинального скрипта
+          if [ -f "../node_modules/react-native/scripts/react-native-xcode.sh" ]; then
+            cp ../node_modules/react-native/scripts/react-native-xcode.sh ../node_modules/react-native/scripts/react-native-xcode.sh.backup
+          fi
+          
+          # Создаем обертку для бандлинга
+          cat > bundle_react_native.sh << 'EOF'
+          #!/bin/bash
+          export NODE_BINARY=/usr/local/bin/node
+          export NODE_OPTIONS="--max-old-space-size=4096"
+          export PATH="/usr/local/bin:$PATH"
+          
+          echo "=== Bundle React Native ==="
+          echo "NODE_BINARY: $NODE_BINARY"
+          $NODE_BINARY --version
+          
+          # Запускаем оригинальный скрипт
+          SCRIPT_PATH="$PWD/../node_modules/react-native/scripts/react-native-xcode.sh"
+          if [ -f "$SCRIPT_PATH" ]; then
+            echo "Running: $SCRIPT_PATH"
+            /bin/bash "$SCRIPT_PATH"
+          else
+            echo "ERROR: react-native-xcode.sh not found at $SCRIPT_PATH"
+            exit 1
+          fi
+          EOF
+          
+          chmod +x bundle_react_native.sh
+          
+          # Модифицируем проект для использования нашей обертки
+          cd ..
+          sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|ios/bundle_react_native.sh|g' ios/bible.xcodeproj/project.pbxproj || true
 
       - name: Set up provisioning profiles
         script: |
@@ -57,12 +99,12 @@ workflows:
         script: |
           cd $CM_BUILD_DIR
           
-          # Экспортируем Node для всех дочерних процессов
-          export NODE_BINARY=$(which node)
-          export NODE_OPTIONS="--max-old-space-size=4096"
-          
           # Очищаем DerivedData
           rm -rf ~/Library/Developer/Xcode/DerivedData/bible-*
+          
+          # Принудительно экспортируем PATH
+          export PATH="/usr/local/bin:$PATH"
+          export NODE_BINARY=/usr/local/bin/node
           
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
@@ -73,23 +115,8 @@ workflows:
             -allowProvisioningUpdates \
             -allowProvisioningDeviceRegistration \
             IPHONEOS_DEPLOYMENT_TARGET=14.0 \
-            ENABLE_PREVIEWS=NO \
-            NODE_BINARY="$NODE_BINARY" \
-            CLANG_ENABLE_MODULES=YES \
-            SWIFT_COMPILATION_MODE=wholemodule
-      - name: Debug bundling script
-        script: |
-          cd $CM_BUILD_DIR
-          # Находим скрипт бандлинга
-          find ios -name "*.sh" -exec grep -l "Bundle React Native" {} \;
-          
-          # Проверяем содержимое скрипта
-          cat ios/bible.xcodeproj/project.pbxproj | grep -A 20 "Bundle React Native code and images"
-          
-          # Ручной запуск бандлинга для проверки
-          export NODE_BINARY=$(which node)
-          cd ios
-          ../node_modules/react-native/scripts/react-native-xcode.sh
+            ENABLE_PREVIEWS=NO
+
       - name: Export IPA
         script: |
           cd $CM_BUILD_DIR
