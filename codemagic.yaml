@@ -1,52 +1,120 @@
 workflows:
-  ios-native-quick-start:
-    name: iOS Native
+  react-native-ios:
+    name: React Native iOS App Store
     max_build_duration: 120
-    instance_type: mac_mini_m1
+    instance_type: mac_mini_m2
     integrations:
       app_store_connect: com.bag.remotex
+
     environment:
       ios_signing:
         distribution_type: app_store
         bundle_identifier: com.coralspiritual.bibleapp
       vars:
-        APP_STORE_APPLE_ID: 6740772174
+        BUNDLE_ID: "com.coralspiritual.bibleapp"
+        TEAM_ID: "99QM459FC5"
+        PROFILE_NAME: "Bible profile"
+        APP_STORE_APPLE_ID: 0000000000
+        SENTRY_DISABLE_AUTO_UPLOAD: "true"
+      node: 18
       xcode: 16.4
       cocoapods: default
-      flutter: stable
+
     scripts:
-      - name: Set up provisioning profiles settings on Xcode project
-        script: xcode-project use-profiles
-      - name: Install Flutter dependencies
+      - name: Install npm dependencies
         script: |
-          cd $CM_BUILD_DIR/rx 
-          flutter pub get 
+          cd $CM_BUILD_DIR
+          npm install
+
+      - name: Prebuild iOS native project
+        script: |
+          cd $CM_BUILD_DIR
+          npx expo prebuild --platform ios --clean
+
       - name: Install pods
         script: |
-          find . -name "Podfile" -execdir pod install \;
-      - name: Increment build number
-        script: | 
-          cd $CM_BUILD_DIR/rx/ios
-          LATEST_BUILD_NUMBER=$(app-store-connect get-latest-app-store-build-number "$APP_STORE_APPLE_ID")
-          agvtool new-version -all $(($LATEST_BUILD_NUMBER + 1))
-      - name: Build ipa for distribution
-        script: | 
-          cd $CM_BUILD_DIR/rx
-          flutter build ipa --release \
+          cd $CM_BUILD_DIR/ios
+          pod install
+
+      - name: Set up node for Xcode build phases
+        script: |
+          cd $CM_BUILD_DIR
+          echo "export NODE_BINARY=$(which node)" > ios/.xcode.env.local
+          cat ios/.xcode.env.local
+
+      - name: Set up provisioning profiles
+        script: |
+          xcode-project use-profiles --verbose
+
+      - name: Force signing in Xcode project
+        script: |
+          cd $CM_BUILD_DIR
+          PBXPROJ="ios/bible.xcodeproj/project.pbxproj"
+
+          echo "=== Before patching ==="
+          grep "DEVELOPMENT_TEAM" "$PBXPROJ" || echo "No DEVELOPMENT_TEAM found"
+          grep "CODE_SIGN_STYLE" "$PBXPROJ" || echo "No CODE_SIGN_STYLE found"
+          grep "PROVISIONING_PROFILE_SPECIFIER" "$PBXPROJ" || echo "No PROVISIONING_PROFILE_SPECIFIER found"
+
+          # Set DEVELOPMENT_TEAM everywhere
+          sed -i '' "s/DEVELOPMENT_TEAM = \"\";/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
+          sed -i '' "s/DEVELOPMENT_TEAM = ;/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
+
+          # Switch to manual signing
+          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' "$PBXPROJ"
+
+          # Set provisioning profile specifier
+          sed -i '' "s/PROVISIONING_PROFILE_SPECIFIER = \"\";/PROVISIONING_PROFILE_SPECIFIER = \"$PROFILE_NAME\";/g" "$PBXPROJ"
+          sed -i '' "s/PROVISIONING_PROFILE_SPECIFIER = ;/PROVISIONING_PROFILE_SPECIFIER = \"$PROFILE_NAME\";/g" "$PBXPROJ"
+
+          # Set code sign identity
+          sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PBXPROJ"
+          sed -i '' 's/"CODE_SIGN_IDENTITY\[sdk=iphoneos\*\]" = "";/"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";/g' "$PBXPROJ"
+
+          echo "=== After patching ==="
+          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -5
+          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -5
+          grep "PROVISIONING_PROFILE_SPECIFIER" "$PBXPROJ" | head -5
+          grep "CODE_SIGN_IDENTITY" "$PBXPROJ" | head -10
+
+      - name: Build archive
+        script: |
+          cd $CM_BUILD_DIR
+          xcodebuild -workspace "ios/bible.xcworkspace" \
+            -scheme "bible" \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
+            archive \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            CODE_SIGN_STYLE=Manual \
+            DEVELOPMENT_TEAM="$TEAM_ID" \
+            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
+            "CODE_SIGN_IDENTITY=Apple Distribution"
+
+      - name: Export IPA
+        script: |
+          cd $CM_BUILD_DIR
+          printf '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n\t<key>method</key>\n\t<string>app-store</string>\n\t<key>teamID</key>\n\t<string>%s</string>\n\t<key>uploadSymbols</key>\n\t<true/>\n\t<key>signingStyle</key>\n\t<string>manual</string>\n\t<key>provisioningProfiles</key>\n\t<dict>\n\t\t<key>%s</key>\n\t\t<string>%s</string>\n\t</dict>\n</dict>\n</plist>\n' "$TEAM_ID" "$BUNDLE_ID" "$PROFILE_NAME" > /tmp/ExportOptions.plist
+          cat /tmp/ExportOptions.plist
+          xcodebuild -exportArchive \
+            -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
+            -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
+            -exportOptionsPlist /tmp/ExportOptions.plist
+
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+      - build/ios/xcarchive/*.xcarchive
+
     publishing:
       email:
         recipients:
-          - idgoratokin@gmail.com
+          - gbasovv@gmail.com
         notify:
           success: true
-          failure: false
+          failure: true
       app_store_connect:
         auth: integration
         submit_to_testflight: true
-        beta_groups:
-          - group name 1
-          - group name 2
         submit_to_app_store: false
