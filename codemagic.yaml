@@ -18,6 +18,33 @@ workflows:
       cocoapods: default
 
     scripts:
+      # - name: Install npm dependencies
+      #   script: |
+      #     cd $CM_BUILD_DIR
+      #     npm install
+
+      # - name: Clean cache
+      #   script: |
+      #     cd $CM_BUILD_DIR
+      #     rm -rf node_modules/.cache
+      #     rm -rf ios/Pods ios/Podfile.lock ios/build ios/DerivedData
+      #     pod cache clean --all
+
+      # - name: Prebuild iOS native project
+      #   script: |
+      #     cd $CM_BUILD_DIR
+      #     npx expo prebuild --platform ios --clean
+
+      # - name: Install pods
+      #   script: |
+      #     cd $CM_BUILD_DIR/ios
+      #     pod repo update
+      #     pod install --repo-update
+
+      # - name: Set up provisioning profiles
+      #   script: |
+      #     xcode-project use-profiles
+
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
@@ -49,38 +76,39 @@ workflows:
         script: |
           cd $CM_BUILD_DIR
           
-          # 1. Создаем main.jsbundle вручную
+          # Устанавливаем CLI если нужно
+          if [ ! -d "node_modules/@react-native-community/cli" ]; then
+            npm install --save-dev @react-native-community/cli
+          fi
+          
+          # Создаем bundle
           echo "Creating main.jsbundle..."
-          export NODE_BINARY=/usr/local/bin/node
-          $NODE_BINARY node_modules/react-native/cli.js bundle \
+          npx @react-native-community/cli bundle \
             --platform ios \
             --dev false \
             --entry-file index.ts \
             --bundle-output ios/main.jsbundle \
-            --assets-dest ios \
-            --verbose
+            --assets-dest ios
           
-          # 2. Проверяем, что bundle создан
-          if [ -f "ios/main.jsbundle" ]; then
-            echo "✅ Bundle created successfully"
-            ls -la ios/main.jsbundle
-          else
+          if [ ! -f "ios/main.jsbundle" ]; then
             echo "❌ Bundle creation failed"
             exit 1
           fi
           
-          # 3. Создаем пустой скрипт-заглушку для Xcode
+          echo "✅ Bundle created: $(ls -lh ios/main.jsbundle)"
+          
+          # Заглушка для Xcode
           cat > ios/bundle_stub.sh << 'EOF'
           #!/bin/bash
-          echo "Skipping React Native bundling (already done manually)"
+          echo "Skipping automatic bundling"
           exit 0
           EOF
           chmod +x ios/bundle_stub.sh
           
-          # 4. Заменяем скрипт бандлинга в проекте на заглушку
-          sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj
+          # Отключаем автоматический бандлинг
+          sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj || true
           
-          # 5. Архивация
+          # Архивация
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
             -configuration Release \
@@ -109,7 +137,7 @@ workflows:
           </dict>
           </plist>
           EOF
-          
+                    
           xcodebuild -exportArchive \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
