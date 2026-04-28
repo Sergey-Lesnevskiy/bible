@@ -92,26 +92,17 @@ workflows:
       - name: Export IPA
         script: |
           cd $CM_BUILD_DIR
-          
-          cat > /tmp/ExportOptions.plist << 'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-            <key>method</key>
-            <string>app-store-connect</string>
-          </dict>
-          </plist>
-          EOF
-          
+          printf '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n\t<key>method</key>\n\t<string>app-store</string>\n\t<key>teamID</key>\n\t<string>%s</string>\n\t<key>uploadSymbols</key>\n\t<true/>\n\t<key>signingStyle</key>\n\t<string>manual</string>\n\t<key>provisioningProfiles</key>\n\t<dict>\n\t\t<key>%s</key>\n\t\t<string>%s</string>\n\t</dict>\n</dict>\n</plist>\n' "$TEAM_ID" "$BUNDLE_ID" "$PROFILE_NAME" > /tmp/ExportOptions.plist
+          cat /tmp/ExportOptions.plist
           xcodebuild -exportArchive \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
-            -exportOptionsPlist /tmp/ExportOptions.plist \
-            -allowProvisioningUpdates
+            -exportOptionsPlist /tmp/ExportOptions.plist
 
     artifacts:
-      - build/ios/ipa/*.ipa
+      - build/ios/ipa/*.ipas
+      - /tmp/xcodebuild_logs/*.log
+      - build/ios/xcarchive/*.xcarchive
 
     publishing:
       email:
