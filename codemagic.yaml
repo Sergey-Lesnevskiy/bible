@@ -107,13 +107,20 @@ workflows:
         script: |
           cd $CM_BUILD_DIR
           
+          # Проверяем загруженные профили
+          echo "=== Checking provisioning profiles ==="
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ || echo "No profiles found"
+          
+          # Исправляем метод на app-store-connect (не app-store)
           cat > /tmp/ExportOptions.plist << 'EOF'
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
           <dict>
             <key>method</key>
-            <string>app-store</string>
+            <string>app-store-connect</string>
+            <key>teamID</key>
+            <string>99QM459FC5</string>
             <key>uploadSymbols</key>
             <true/>
             <key>signingStyle</key>
@@ -122,11 +129,27 @@ workflows:
           </plist>
           EOF
           
+          echo "=== ExportOptions.plist ==="
+          cat /tmp/ExportOptions.plist
+          
+          # Экспортируем с дополнительными флагами
           xcodebuild -exportArchive \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
             -exportOptionsPlist /tmp/ExportOptions.plist \
-            -allowProvisioningUpdates
+            -allowProvisioningUpdates \
+            -allowProvisioningDeviceRegistration \
+            -verbose 2>&1 | tee export.log
+          
+          # Проверяем результат
+          if [ -d "$CM_BUILD_DIR/build/ios/ipa" ]; then
+            echo "✅ IPA exported successfully"
+            ls -la $CM_BUILD_DIR/build/ios/ipa/
+          else
+            echo "❌ Export failed"
+            cat export.log | grep -i "error"
+            exit 1
+          fi
 
     artifacts:
       - build/ios/ipa/*.ipa
