@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: Bible
+      app_store_connect: Bible  # Убедитесь, что это имя интеграции
 
     environment:
       ios_signing:
@@ -12,10 +12,8 @@ workflows:
         bundle_identifier: com.coralspiritual.bibleapp
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
-        TEAM_ID: "99QM459FC5"
-        PROFILE_NAME: "Bible profile"
-        APP_STORE_APPLE_ID: 0000000000
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
+        # УДАЛИТЕ TEAM_ID и PROFILE_NAME - они не нужны при автоматической подписи
       node: 18
       xcode: 16.4
       cocoapods: default
@@ -35,101 +33,142 @@ workflows:
           rm -rf $CM_BUILD_DIR/ios/build
           pod cache clean --all
 
-      - name: Setup Podfile
+      - name: Setup Podfile with iOS version
         script: |
           cd $CM_BUILD_DIR/ios
-          
-          # Создаем Podfile с нуля, если его нет
-          if [ ! -f Podfile ]; then
-            echo "Creating Podfile from scratch"
-            cat > Podfile << 'EOF'
-          require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
-          require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
-          require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
-          
-          platform :ios, '14.0'
-          
-          prepare_react_native_project!
-          
-          target 'bible' do
-            config = use_native_modules!
-            use_frameworks! :static
-            flags = get_default_flags()
+                      
+                      if [ ! -f Podfile ]; then
+                        cat > Podfile << 'EOF'
+            require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
+            require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
+            require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
             
-            use_react_native!(
-              :path => config[:reactNativePath],
-              :hermes_enabled => flags[:hermes_enabled] || false,
-              :fabric_enabled => flags[:fabric_enabled] || false
-            )
+            platform :ios, '14.0'
             
-            use_expo_modules!
+            prepare_react_native_project!
             
-            post_integrate do |installer|
-              begin
-                expo_patch_react_imports!(installer)
-              rescue => e
-                Pod::UI.warn e
+            target 'bible' do
+              config = use_native_modules!
+              use_frameworks! :static
+              flags = get_default_flags()
+              
+              use_react_native!(
+                :path => config[:reactNativePath],
+                :hermes_enabled => flags[:hermes_enabled] || false,
+                :fabric_enabled => flags[:fabric_enabled] || false
+              )
+              
+              use_expo_modules!
+              
+              post_integrate do |installer|
+                begin
+                  expo_patch_react_imports!(installer)
+                rescue => e
+                  Pod::UI.warn e
+                end
               end
             end
-          end
-          
-          post_install do |installer|
-            installer.pods_project.targets.each do |target|
-              target.build_configurations.each do |config|
-                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
-                config.build_settings['SWIFT_VERSION'] = '5.0'
+            
+            post_install do |installer|
+              installer.pods_project.targets.each do |target|
+                target.build_configurations.each do |config|
+                  config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+                  config.build_settings['SWIFT_VERSION'] = '5.0'
+                end
               end
             end
-          end
-          EOF
-            fi
+            EOF
+          fi
           
           cat Podfile
 
-      - name: Prebuild and install
+      - name: Prebuild iOS native project
         script: |
           cd $CM_BUILD_DIR
           npx expo prebuild --platform ios --clean
-          cd ios
-          pod install --repo-update --verbose
+
+      - name: Install pods
+        script: |
+          cd $CM_BUILD_DIR/ios
+          pod repo update
+          pod install --repo-update
 
       - name: Set up node for Xcode
         script: |
           cd $CM_BUILD_DIR
           echo "export NODE_BINARY=$(which node)" > ios/.xcode.env.local
 
-      - name: Setup signing
+      - name: Set up provisioning profiles (automatic)
         script: |
-          xcode-project use-profiles --verbose
+          # Автоматически загружает профили из интеграции
+          xcode-project use-profiles
+          
+          # Проверяем, что профили загружены
+          echo "Installed profiles:"
+          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ | head -10
 
-      - name: Build archive with error detection
+      - name: Build archive with automatic signing
         script: |
           cd $CM_BUILD_DIR
-          set -o pipefail
           
+          # Убираем все ручные настройки подписи
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
             -configuration Release \
             -destination "generic/platform=iOS" \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             archive \
-            CODE_SIGN_STYLE=Manual \
-            DEVELOPMENT_TEAM="$TEAM_ID" \
-            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
-            "CODE_SIGN_IDENTITY=Apple Distribution" \
+            -allowProvisioningUpdates \
+            -allowProvisioningDeviceRegistration \
             IPHONEOS_DEPLOYMENT_TARGET=14.0 \
-            ONLY_ACTIVE_ARCH=NO \
             ENABLE_PREVIEWS=NO \
             2>&1 | tee build.log
           
-          # Проверяем наличие критических ошибок
-          if grep -E "error:|fatal error:" build.log; then
+          # Проверяем наличие ошибок
+          if grep -q "error:" build.log; then
             echo "❌ Build failed with errors:"
-            grep -E "error:|fatal error:" build.log
+            grep "error:" build.log
             exit 1
           fi
+
+      - name: Export IPA
+        script: |
+          cd $CM_BUILD_DIR
+          
+          # Создаем ExportOptions.plist для автоматической подписи
+          cat > /tmp/ExportOptions.plist << EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store</string>
+            <key>uploadSymbols</key>
+            <true/>
+            <key>signingStyle</key>
+            <string>automatic</string>
+          </dict>
+          </plist>
+          EOF
+          
+          xcodebuild -exportArchive \
+            -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
+            -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
+            -exportOptionsPlist /tmp/ExportOptions.plist \
+            -allowProvisioningUpdates
 
     artifacts:
       - build/ios/ipa/*.ipa
       - build.log
-      - xcodebuild.log
+
+    publishing:
+      email:
+        recipients:
+          - gbasovv@gmail.com
+        notify:
+          success: true
+          failure: true
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
