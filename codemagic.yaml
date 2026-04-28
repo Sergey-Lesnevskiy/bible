@@ -13,23 +13,34 @@ workflows:
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
-        EXPO_NO_DEV_CLIENT: "true"  
-        EXPO_NO_DEV_MENU: "true"  
       node: 18
       xcode: 16.4
       cocoapods: default
 
     scripts:
+      - name: Remove dev menu packages
+        script: |
+          cd $CM_BUILD_DIR
+          # Удаляем проблемные пакеты
+          if [ -d "node_modules/expo-dev-menu" ]; then
+            echo "Removing expo-dev-menu"
+            rm -rf node_modules/expo-dev-menu
+          fi
+          if [ -d "node_modules/expo-dev-client" ]; then
+            echo "Removing expo-dev-client"
+            rm -rf node_modules/expo-dev-client
+          fi
+          
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Clean cache
         script: |
           cd $CM_BUILD_DIR
           rm -rf node_modules/.cache
-          rm -rf ios/build
+          rm -rf ios/Pods ios/Podfile.lock ios/build
           pod cache clean --all
 
       - name: Prebuild iOS native project
