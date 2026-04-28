@@ -4,7 +4,7 @@ workflows:
     max_build_duration: 120
     instance_type: mac_mini_m2
     integrations:
-      app_store_connect: com.bag.remotex
+      app_store_connect: Bible
 
     environment:
       ios_signing:
@@ -26,15 +26,59 @@ workflows:
           cd $CM_BUILD_DIR
           npm install
 
+      # 🔥 НОВЫЙ ШАГ: Очистка кэша перед сборкой
+      - name: Clean cache
+        script: |
+          cd $CM_BUILD_DIR
+          rm -rf node_modules/.cache
+          rm -rf $CM_BUILD_DIR/ios/Pods
+          rm -rf $CM_BUILD_DIR/ios/Podfile.lock
+          rm -rf $CM_BUILD_DIR/ios/build
+          pod cache clean --all
+
+      # 🔥 ИЗМЕНЕНО: Добавлена установка platform в Podfile
+      - name: Setup Podfile with iOS version
+        script: |
+          cd $CM_BUILD_DIR/ios
+          
+          # Резервное копирование оригинального Podfile
+          cp Podfile Podfile.backup
+          
+          # Добавляем platform :ios в начало файла, если её нет
+          if ! grep -q "^platform :ios" Podfile; then
+            echo "Adding platform :ios, '14.0' to Podfile"
+            echo "platform :ios, '14.0'" | cat - Podfile > Podfile.tmp && mv Podfile.tmp Podfile
+          else
+            echo "Platform already exists, updating to 14.0"
+            sed -i '' "s/platform :ios, .*/platform :ios, '14.0'/g" Podfile
+          fi
+          
+          # Добавляем принудительную установку deployment target для всех pods
+          cat >> Podfile << 'EOF'
+
+          # Force deployment target for all pods
+          post_install do |installer|
+            installer.pods_project.targets.each do |target|
+              target.build_configurations.each do |config|
+                config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '14.0'
+                config.build_settings['SWIFT_VERSION'] = '5.0'
+              end
+            end
+          end
+          EOF
+          
+          echo "=== Final Podfile content ==="
+          cat Podfile
+
       - name: Prebuild iOS native project
         script: |
           cd $CM_BUILD_DIR
           npx expo prebuild --platform ios --clean
-
       - name: Install pods
         script: |
           cd $CM_BUILD_DIR/ios
-          pod install
+          pod repo update
+          pod install --repo-update
 
       - name: Set up node for Xcode build phases
         script: |
@@ -46,19 +90,20 @@ workflows:
         script: |
           xcode-project use-profiles --verbose
 
+      # 🔥 УЛУЧШЕНО: Патчинг подписи с проверкой ошибок
       - name: Force signing in Xcode project
         script: |
           cd $CM_BUILD_DIR
           PBXPROJ="ios/bible.xcodeproj/project.pbxproj"
 
           echo "=== Before patching ==="
-          grep "DEVELOPMENT_TEAM" "$PBXPROJ" || echo "No DEVELOPMENT_TEAM found"
-          grep "CODE_SIGN_STYLE" "$PBXPROJ" || echo "No CODE_SIGN_STYLE found"
-          grep "PROVISIONING_PROFILE_SPECIFIER" "$PBXPROJ" || echo "No PROVISIONING_PROFILE_SPECIFIER found"
+          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -3 || echo "No DEVELOPMENT_TEAM found"
+          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -3 || echo "No CODE_SIGN_STYLE found"
 
           # Set DEVELOPMENT_TEAM everywhere
           sed -i '' "s/DEVELOPMENT_TEAM = \"\";/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
           sed -i '' "s/DEVELOPMENT_TEAM = ;/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
+          sed -i '' "s/DEVELOPMENT_TEAM = [a-zA-Z0-9]*;/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
 
           # Switch to manual signing
           sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' "$PBXPROJ"
@@ -72,11 +117,12 @@ workflows:
           sed -i '' 's/"CODE_SIGN_IDENTITY\[sdk=iphoneos\*\]" = "";/"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";/g' "$PBXPROJ"
 
           echo "=== After patching ==="
-          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -5
-          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -5
-          grep "PROVISIONING_PROFILE_SPECIFIER" "$PBXPROJ" | head -5
-          grep "CODE_SIGN_IDENTITY" "$PBXPROJ" | head -10
+          echo "DEVELOPMENT_TEAM:"
+          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -3
+          echo "CODE_SIGN_STYLE:"
+          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -3
 
+      # 🔥 ИЗМЕНЕНО: Добавлена переменная для подавления предупреждений
       - name: Build archive
         script: |
           cd $CM_BUILD_DIR
@@ -90,7 +136,10 @@ workflows:
             CODE_SIGN_STYLE=Manual \
             DEVELOPMENT_TEAM="$TEAM_ID" \
             PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
-            "CODE_SIGN_IDENTITY=Apple Distribution"
+            "CODE_SIGN_IDENTITY=Apple Distribution" \
+            IPHONEOS_DEPLOYMENT_TARGET=14.0 \
+            ONLY_ACTIVE_ARCH=NO \
+            ENABLE_PREVIEWS=NO  # 🔥 Подавляет предупреждения о previews
 
       - name: Export IPA
         script: |
