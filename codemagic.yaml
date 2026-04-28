@@ -24,9 +24,8 @@ workflows:
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
-          npm install
+          npm ci  # используем ci вместо install для воспроизводимости
 
-      # 🔥 НОВЫЙ ШАГ: Очистка кэша перед сборкой
       - name: Clean cache
         script: |
           cd $CM_BUILD_DIR
@@ -34,29 +33,47 @@ workflows:
           rm -rf $CM_BUILD_DIR/ios/Pods
           rm -rf $CM_BUILD_DIR/ios/Podfile.lock
           rm -rf $CM_BUILD_DIR/ios/build
+          rm -rf $CM_BUILD_DIR/ios/bible.xcworkspace
           pod cache clean --all
 
-      # 🔥 ИЗМЕНЕНО: Добавлена установка platform в Podfile
-      - name: Setup Podfile with iOS version
+      - name: Setup Podfile
         script: |
           cd $CM_BUILD_DIR/ios
           
-          # Резервное копирование оригинального Podfile
-          cp Podfile Podfile.backup
+          # Создаем Podfile с нуля, если его нет
+          if [ ! -f Podfile ]; then
+            echo "Creating Podfile from scratch"
+            cat > Podfile << 'EOF'
+          require File.join(File.dirname(`node --print "require.resolve('expo/package.json')"`), "scripts/autolinking")
+          require File.join(File.dirname(`node --print "require.resolve('react-native/package.json')"`), "scripts/react_native_pods")
+          require File.join(File.dirname(`node --print "require.resolve('@react-native-community/cli-platform-ios/package.json')"`), "native_modules")
           
-          # Добавляем platform :ios в начало файла, если её нет
-          if ! grep -q "^platform :ios" Podfile; then
-            echo "Adding platform :ios, '14.0' to Podfile"
-            echo "platform :ios, '14.0'" | cat - Podfile > Podfile.tmp && mv Podfile.tmp Podfile
-          else
-            echo "Platform already exists, updating to 14.0"
-            sed -i '' "s/platform :ios, .*/platform :ios, '14.0'/g" Podfile
-          fi
+          platform :ios, '14.0'
           
-          # Добавляем принудительную установку deployment target для всех pods
-          cat >> Podfile << 'EOF'
-
-          # Force deployment target for all pods
+          prepare_react_native_project!
+          
+          target 'bible' do
+            config = use_native_modules!
+            use_frameworks! :static
+            flags = get_default_flags()
+            
+            use_react_native!(
+              :path => config[:reactNativePath],
+              :hermes_enabled => flags[:hermes_enabled] || false,
+              :fabric_enabled => flags[:fabric_enabled] || false
+            )
+            
+            use_expo_modules!
+            
+            post_integrate do |installer|
+              begin
+                expo_patch_react_imports!(installer)
+              rescue => e
+                Pod::UI.warn e
+              end
+            end
+          end
+          
           post_install do |installer|
             installer.pods_project.targets.each do |target|
               target.build_configurations.each do |config|
@@ -66,104 +83,54 @@ workflows:
             end
           end
           EOF
+            fi
           
-          echo "=== Final Podfile content ==="
           cat Podfile
 
-      - name: Prebuild iOS native project
+      - name: Prebuild and install
         script: |
           cd $CM_BUILD_DIR
           npx expo prebuild --platform ios --clean
-      - name: Install pods
-        script: |
-          cd $CM_BUILD_DIR/ios
-          pod repo update
-          pod install --repo-update
+          cd ios
+          pod install --repo-update --verbose
 
-      - name: Set up node for Xcode build phases
+      - name: Set up node for Xcode
         script: |
           cd $CM_BUILD_DIR
           echo "export NODE_BINARY=$(which node)" > ios/.xcode.env.local
-          cat ios/.xcode.env.local
 
-      - name: Set up provisioning profiles
+      - name: Setup signing
         script: |
           xcode-project use-profiles --verbose
 
-      # 🔥 УЛУЧШЕНО: Патчинг подписи с проверкой ошибок
-      - name: Force signing in Xcode project
+      - name: Build archive with error detection
         script: |
           cd $CM_BUILD_DIR
-          PBXPROJ="ios/bible.xcodeproj/project.pbxproj"
-
-          echo "=== Before patching ==="
-          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -3 || echo "No DEVELOPMENT_TEAM found"
-          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -3 || echo "No CODE_SIGN_STYLE found"
-
-          # Set DEVELOPMENT_TEAM everywhere
-          sed -i '' "s/DEVELOPMENT_TEAM = \"\";/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
-          sed -i '' "s/DEVELOPMENT_TEAM = ;/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
-          sed -i '' "s/DEVELOPMENT_TEAM = [a-zA-Z0-9]*;/DEVELOPMENT_TEAM = $TEAM_ID;/g" "$PBXPROJ"
-
-          # Switch to manual signing
-          sed -i '' 's/CODE_SIGN_STYLE = Automatic;/CODE_SIGN_STYLE = Manual;/g' "$PBXPROJ"
-
-          # Set provisioning profile specifier
-          sed -i '' "s/PROVISIONING_PROFILE_SPECIFIER = \"\";/PROVISIONING_PROFILE_SPECIFIER = \"$PROFILE_NAME\";/g" "$PBXPROJ"
-          sed -i '' "s/PROVISIONING_PROFILE_SPECIFIER = ;/PROVISIONING_PROFILE_SPECIFIER = \"$PROFILE_NAME\";/g" "$PBXPROJ"
-
-          # Set code sign identity
-          sed -i '' 's/CODE_SIGN_IDENTITY = "Apple Development";/CODE_SIGN_IDENTITY = "Apple Distribution";/g' "$PBXPROJ"
-          sed -i '' 's/"CODE_SIGN_IDENTITY\[sdk=iphoneos\*\]" = "";/"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Apple Distribution";/g' "$PBXPROJ"
-
-          echo "=== After patching ==="
-          echo "DEVELOPMENT_TEAM:"
-          grep "DEVELOPMENT_TEAM" "$PBXPROJ" | head -3
-          echo "CODE_SIGN_STYLE:"
-          grep "CODE_SIGN_STYLE" "$PBXPROJ" | head -3
-
-      # 🔥 ИЗМЕНЕНО: Добавлена переменная для подавления предупреждений
-      - name: Build archive
-        script: |
-          cd $CM_BUILD_DIR
+          set -o pipefail
+          
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
             -configuration Release \
             -destination "generic/platform=iOS" \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             archive \
-            COMPILER_INDEX_STORE_ENABLE=NO \
             CODE_SIGN_STYLE=Manual \
             DEVELOPMENT_TEAM="$TEAM_ID" \
             PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" \
             "CODE_SIGN_IDENTITY=Apple Distribution" \
             IPHONEOS_DEPLOYMENT_TARGET=14.0 \
             ONLY_ACTIVE_ARCH=NO \
-            ENABLE_PREVIEWS=NO  # 🔥 Подавляет предупреждения о previews
-
-      - name: Export IPA
-        script: |
-          cd $CM_BUILD_DIR
-          printf '<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>\n\t<key>method</key>\n\t<string>app-store</string>\n\t<key>teamID</key>\n\t<string>%s</string>\n\t<key>uploadSymbols</key>\n\t<true/>\n\t<key>signingStyle</key>\n\t<string>manual</string>\n\t<key>provisioningProfiles</key>\n\t<dict>\n\t\t<key>%s</key>\n\t\t<string>%s</string>\n\t</dict>\n</dict>\n</plist>\n' "$TEAM_ID" "$BUNDLE_ID" "$PROFILE_NAME" > /tmp/ExportOptions.plist
-          cat /tmp/ExportOptions.plist
-          xcodebuild -exportArchive \
-            -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
-            -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
-            -exportOptionsPlist /tmp/ExportOptions.plist
+            ENABLE_PREVIEWS=NO \
+            2>&1 | tee build.log
+          
+          # Проверяем наличие критических ошибок
+          if grep -E "error:|fatal error:" build.log; then
+            echo "❌ Build failed with errors:"
+            grep -E "error:|fatal error:" build.log
+            exit 1
+          fi
 
     artifacts:
       - build/ios/ipa/*.ipa
-      - /tmp/xcodebuild_logs/*.log
-      - build/ios/xcarchive/*.xcarchive
-
-    publishing:
-      email:
-        recipients:
-          - gbasovv@gmail.com
-        notify:
-          success: true
-          failure: true
-      app_store_connect:
-        auth: integration
-        submit_to_testflight: true
-        submit_to_app_store: false
+      - build.log
+      - xcodebuild.log
