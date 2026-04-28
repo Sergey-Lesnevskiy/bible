@@ -5,14 +5,24 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "deploymentTarget": "13.4"
+      }
     },
     "preview": {
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "deploymentTarget": "13.4"
+      }
     },
     "production": {
       "ios": {
         "deploymentTarget": "13.4"
+      },
+      "env": {
+        "EXPO_NO_DEV_CLIENT": "true",
+        "EXPO_NO_DEV_MENU": "true"
       }
     }
   }

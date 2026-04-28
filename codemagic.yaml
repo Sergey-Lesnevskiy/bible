@@ -13,6 +13,8 @@ workflows:
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
+        EXPO_NO_DEV_CLIENT: "true"  
+        EXPO_NO_DEV_MENU: "true"  
       node: 18
       xcode: 16.4
       cocoapods: default
