@@ -13,41 +13,16 @@ workflows:
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
-      node: 18
+      node: 22  # 🔥 ИЗМЕНЕНО с 18 на 22
       xcode: 16.4
       cocoapods: default
 
     scripts:
-      # - name: Install npm dependencies
-      #   script: |
-      #     cd $CM_BUILD_DIR
-      #     npm install
-
-      # - name: Clean cache
-      #   script: |
-      #     cd $CM_BUILD_DIR
-      #     rm -rf node_modules/.cache
-      #     rm -rf ios/Pods ios/Podfile.lock ios/build ios/DerivedData
-      #     pod cache clean --all
-
-      # - name: Prebuild iOS native project
-      #   script: |
-      #     cd $CM_BUILD_DIR
-      #     npx expo prebuild --platform ios --clean
-
-      # - name: Install pods
-      #   script: |
-      #     cd $CM_BUILD_DIR/ios
-      #     pod repo update
-      #     pod install --repo-update
-
-      # - name: Set up provisioning profiles
-      #   script: |
-      #     xcode-project use-profiles
-
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
+          # Устанавливаем недостающие пакеты
+          npm install --save-dev @react-native/metro-config @react-native-community/cli
           npm install
 
       - name: Clean cache
@@ -76,19 +51,18 @@ workflows:
         script: |
           cd $CM_BUILD_DIR
           
-          # Устанавливаем CLI если нужно
-          if [ ! -d "node_modules/@react-native-community/cli" ]; then
-            npm install --save-dev @react-native-community/cli
-          fi
+          # Проверяем версию Node
+          node --version
           
           # Создаем bundle
           echo "Creating main.jsbundle..."
-          npx @react-native-community/cli bundle \
+          npx react-native bundle \
             --platform ios \
             --dev false \
             --entry-file index.ts \
             --bundle-output ios/main.jsbundle \
-            --assets-dest ios
+            --assets-dest ios \
+            --verbose
           
           if [ ! -f "ios/main.jsbundle" ]; then
             echo "❌ Bundle creation failed"
@@ -137,7 +111,7 @@ workflows:
           </dict>
           </plist>
           EOF
-                    
+          
           xcodebuild -exportArchive \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
