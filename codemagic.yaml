@@ -13,7 +13,7 @@ workflows:
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
-      node: 22.18.0  # 🔥 ИЗМЕНЕНО
+      node: 22.18.0
       xcode: 16.4
       cocoapods: default
 
@@ -21,7 +21,6 @@ workflows:
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
-          # Устанавливаем необходимые dev зависимости
           npm install --save-dev @react-native/metro-config @react-native-community/cli
           npm install
 
@@ -45,17 +44,14 @@ workflows:
 
       - name: Set up provisioning profiles
         script: |
-          xcode-project use-profiles
+          xcode-project use-profiles --verbose
 
       - name: Manual bundling
         script: |
           cd $CM_BUILD_DIR
           
           echo "Node version: $(node --version)"
-          echo "NPM version: $(npm --version)"
           
-          # Создаем bundle используя npx
-          echo "Creating main.jsbundle..."
           npx react-native bundle \
             --platform ios \
             --dev false \
@@ -64,7 +60,6 @@ workflows:
             --assets-dest ios
           
           if [ ! -f "ios/main.jsbundle" ]; then
-            echo "❌ Bundle creation failed. Trying with index.js..."
             npx react-native bundle \
               --platform ios \
               --dev false \
@@ -74,15 +69,13 @@ workflows:
           fi
           
           if [ -f "ios/main.jsbundle" ]; then
-            echo "✅ Bundle created: $(ls -lh ios/main.jsbundle)"
-            # Создаем заглушку для Xcode
+            echo "✅ Bundle created"
             cat > ios/bundle_stub.sh << 'BUNDLE_EOF'
-          #!/bin/bash
-          echo "✓ Auto-bundling disabled, using manual bundle"
-          exit 0
-          BUNDLE_EOF
+            #!/bin/bash
+            echo "✓ Auto-bundling disabled"
+            exit 0
+            BUNDLE_EOF
             chmod +x ios/bundle_stub.sh
-            # Отключаем автоматический бандлинг
             sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj || true
           else
             echo "❌ Bundle creation failed"
@@ -102,17 +95,15 @@ workflows:
             -allowProvisioningUpdates \
             -allowProvisioningDeviceRegistration \
             IPHONEOS_DEPLOYMENT_TARGET=14.0
-
       - name: Export IPA
         script: |
           cd $CM_BUILD_DIR
           
-          # Проверяем загруженные профили
-          echo "=== Checking provisioning profiles ==="
-          ls -la ~/Library/MobileDevice/Provisioning\ Profiles/ || echo "No profiles found"
+          # Получаем UUID профиля динамически
+          PROFILE_UUID=$(ls ~/Library/MobileDevice/Provisioning\ Profiles/ | head -1 | sed 's/.mobileprovision//')
+          echo "Found profile UUID: $PROFILE_UUID"
           
-          # Исправляем метод на app-store-connect (не app-store)
-          cat > /tmp/ExportOptions.plist << 'EOF'
+          cat > /tmp/ExportOptions.plist << EOF
           <?xml version="1.0" encoding="UTF-8"?>
           <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
           <plist version="1.0">
@@ -132,24 +123,13 @@ workflows:
           echo "=== ExportOptions.plist ==="
           cat /tmp/ExportOptions.plist
           
-          # Экспортируем с дополнительными флагами
+          # Экспортируем
           xcodebuild -exportArchive \
             -archivePath "$CM_BUILD_DIR/build/ios/xcarchive/bible.xcarchive" \
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
             -exportOptionsPlist /tmp/ExportOptions.plist \
             -allowProvisioningUpdates \
-            -allowProvisioningDeviceRegistration \
-            -verbose 2>&1 | tee export.log
-          
-          # Проверяем результат
-          if [ -d "$CM_BUILD_DIR/build/ios/ipa" ]; then
-            echo "✅ IPA exported successfully"
-            ls -la $CM_BUILD_DIR/build/ios/ipa/
-          else
-            echo "❌ Export failed"
-            cat export.log | grep -i "error"
-            exit 1
-          fi
+            -allowProvisioningDeviceRegistration
 
     artifacts:
       - build/ios/ipa/*.ipa
