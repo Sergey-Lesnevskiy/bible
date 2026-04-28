@@ -41,71 +41,46 @@ workflows:
           pod repo update
           pod install --repo-update
 
-      - name: Setup environment for bundling
-        script: |
-          cd $CM_BUILD_DIR
-          echo "export NODE_BINARY=/usr/local/bin/node" > ios/.xcode.env.local
-          echo "export NODE_BINARY=/usr/local/bin/node" > .xcode.env.local
-          
-          # Создаем символическую ссылку на node в стандартное место
-          sudo ln -sf /usr/local/bin/node /usr/bin/node || true
-          
-          # Проверяем
-          /usr/local/bin/node --version
-          which node
-
-      - name: Fix bundling script
-        script: |
-          cd $CM_BUILD_DIR/ios
-          
-          # Бэкап оригинального скрипта
-          if [ -f "../node_modules/react-native/scripts/react-native-xcode.sh" ]; then
-            cp ../node_modules/react-native/scripts/react-native-xcode.sh ../node_modules/react-native/scripts/react-native-xcode.sh.backup
-          fi
-          
-          # Создаем обертку для бандлинга
-          cat > bundle_react_native.sh << 'EOF'
-          #!/bin/bash
-          export NODE_BINARY=/usr/local/bin/node
-          export NODE_OPTIONS="--max-old-space-size=4096"
-          export PATH="/usr/local/bin:$PATH"
-          
-          echo "=== Bundle React Native ==="
-          echo "NODE_BINARY: $NODE_BINARY"
-          $NODE_BINARY --version
-          
-          # Запускаем оригинальный скрипт
-          SCRIPT_PATH="$PWD/../node_modules/react-native/scripts/react-native-xcode.sh"
-          if [ -f "$SCRIPT_PATH" ]; then
-            echo "Running: $SCRIPT_PATH"
-            /bin/bash "$SCRIPT_PATH"
-          else
-            echo "ERROR: react-native-xcode.sh not found at $SCRIPT_PATH"
-            exit 1
-          fi
-          EOF
-          
-          chmod +x bundle_react_native.sh
-          
-          # Модифицируем проект для использования нашей обертки
-          cd ..
-          sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|ios/bundle_react_native.sh|g' ios/bible.xcodeproj/project.pbxproj || true
-
       - name: Set up provisioning profiles
         script: |
           xcode-project use-profiles
 
-      - name: Build archive
+      - name: Manual bundling and archive
         script: |
           cd $CM_BUILD_DIR
           
-          # Очищаем DerivedData
-          rm -rf ~/Library/Developer/Xcode/DerivedData/bible-*
-          
-          # Принудительно экспортируем PATH
-          export PATH="/usr/local/bin:$PATH"
+          # 1. Создаем main.jsbundle вручную
+          echo "Creating main.jsbundle..."
           export NODE_BINARY=/usr/local/bin/node
+          $NODE_BINARY node_modules/react-native/cli.js bundle \
+            --platform ios \
+            --dev false \
+            --entry-file index.ts \
+            --bundle-output ios/main.jsbundle \
+            --assets-dest ios \
+            --verbose
           
+          # 2. Проверяем, что bundle создан
+          if [ -f "ios/main.jsbundle" ]; then
+            echo "✅ Bundle created successfully"
+            ls -la ios/main.jsbundle
+          else
+            echo "❌ Bundle creation failed"
+            exit 1
+          fi
+          
+          # 3. Создаем пустой скрипт-заглушку для Xcode
+          cat > ios/bundle_stub.sh << 'EOF'
+          #!/bin/bash
+          echo "Skipping React Native bundling (already done manually)"
+          exit 0
+          EOF
+          chmod +x ios/bundle_stub.sh
+          
+          # 4. Заменяем скрипт бандлинга в проекте на заглушку
+          sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj
+          
+          # 5. Архивация
           xcodebuild -workspace "ios/bible.xcworkspace" \
             -scheme "bible" \
             -configuration Release \
@@ -114,8 +89,7 @@ workflows:
             archive \
             -allowProvisioningUpdates \
             -allowProvisioningDeviceRegistration \
-            IPHONEOS_DEPLOYMENT_TARGET=14.0 \
-            ENABLE_PREVIEWS=NO
+            IPHONEOS_DEPLOYMENT_TARGET=14.0
 
       - name: Export IPA
         script: |
