@@ -7,7 +7,7 @@
     "userInterfaceStyle": "light",
     "icon": "./app/assets/images/onboarding/Icon-logo.png",
     "splash": {
-      "image": "./app/assets/images/onboarding/Icon-logo.png", 
+      "image": "./app/assets/images/onboarding/Icon-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -15,6 +15,7 @@
       "supportsTablet": false,
       "bundleIdentifier": "com.coralspiritual.bibleapp",
       "googleServicesFile": "./GoogleService-Info.plist",
+      "deploymentTarget": "13.4",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }

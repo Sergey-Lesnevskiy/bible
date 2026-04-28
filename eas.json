@@ -10,6 +10,10 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "ios": {
+        "deploymentTarget": "13.4"
+      }
+    }
   }
 }
