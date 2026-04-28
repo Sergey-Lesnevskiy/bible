@@ -13,7 +13,7 @@ workflows:
       vars:
         BUNDLE_ID: "com.coralspiritual.bibleapp"
         SENTRY_DISABLE_AUTO_UPLOAD: "true"
-      node: 22.18.0
+      node: 22.18.0  # 🔥 ИЗМЕНЕНО
       xcode: 16.4
       cocoapods: default
 
@@ -21,6 +21,7 @@ workflows:
       - name: Install npm dependencies
         script: |
           cd $CM_BUILD_DIR
+          # Устанавливаем необходимые dev зависимости
           npm install --save-dev @react-native/metro-config @react-native-community/cli
           npm install
 
@@ -44,14 +45,17 @@ workflows:
 
       - name: Set up provisioning profiles
         script: |
-          xcode-project use-profiles --verbose
+          xcode-project use-profiles
 
       - name: Manual bundling
         script: |
           cd $CM_BUILD_DIR
           
           echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
           
+          # Создаем bundle используя npx
+          echo "Creating main.jsbundle..."
           npx react-native bundle \
             --platform ios \
             --dev false \
@@ -60,6 +64,7 @@ workflows:
             --assets-dest ios
           
           if [ ! -f "ios/main.jsbundle" ]; then
+            echo "❌ Bundle creation failed. Trying with index.js..."
             npx react-native bundle \
               --platform ios \
               --dev false \
@@ -69,13 +74,15 @@ workflows:
           fi
           
           if [ -f "ios/main.jsbundle" ]; then
-            echo "✅ Bundle created"
+            echo "✅ Bundle created: $(ls -lh ios/main.jsbundle)"
+            # Создаем заглушку для Xcode
             cat > ios/bundle_stub.sh << 'BUNDLE_EOF'
-            #!/bin/bash
-            echo "✓ Auto-bundling disabled"
-            exit 0
-            BUNDLE_EOF
+          #!/bin/bash
+          echo "✓ Auto-bundling disabled, using manual bundle"
+          exit 0
+          BUNDLE_EOF
             chmod +x ios/bundle_stub.sh
+            # Отключаем автоматический бандлинг
             sed -i '' 's|../node_modules/react-native/scripts/react-native-xcode.sh|bundle_stub.sh|g' ios/bible.xcodeproj/project.pbxproj || true
           else
             echo "❌ Bundle creation failed"
@@ -95,6 +102,7 @@ workflows:
             -allowProvisioningUpdates \
             -allowProvisioningDeviceRegistration \
             IPHONEOS_DEPLOYMENT_TARGET=14.0
+
       - name: Export IPA
         script: |
           cd $CM_BUILD_DIR
@@ -129,8 +137,6 @@ workflows:
             -exportPath "$CM_BUILD_DIR/build/ios/ipa" \
             -exportOptionsPlist /tmp/ExportOptions.plist \
             -allowProvisioningUpdates \
-            -allowProvisioningDeviceRegistration
-
     artifacts:
       - build/ios/ipa/*.ipa
 
